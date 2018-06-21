@@ -11,6 +11,10 @@ export default class Params<T extends IParameters> {
     );
   }
 
+  columns() {
+    return this.params.map(p => p[0]).join(", ");
+  }
+
   key(key: keyof T) {
     const result = this.params.find(x => x[0] === key);
     if (result) {
@@ -18,6 +22,10 @@ export default class Params<T extends IParameters> {
     } else {
       throw new Error(`Could not find parameter by name ${key}.`);
     }
+  }
+
+  keys() {
+    return this.params.map(p => `$${p[1]}`).join(", ");
   }
 
   values() {

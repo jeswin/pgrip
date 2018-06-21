@@ -21,9 +21,19 @@ describe("pg-params", async () => {
     ]);
   });
 
-  it("creates numbered params", () => {
+  it("returns a list of columns", () => {
+    const params = new PGParams(objParams);
+    params.columns().should.equal("id, location, name, timezone");
+  });
+
+  it("returns numbered params", () => {
     const params = new PGParams(objParams);
     params.key("name").should.equal("$3");
+  });
+
+  it("returns a list of keys", () => {
+    const params = new PGParams(objParams);
+    params.keys().should.equal("$1, $2, $3, $4");
   });
 
   it("returns an array of values", () => {
