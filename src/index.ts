@@ -15,7 +15,7 @@ export default class Params<T extends IParameters> {
     return this.args.map(p => p[0]).join(", ");
   }
 
-  param(name: keyof T) {
+  id(name: keyof T) {
     const result = this.args.find(x => x[0] === name);
     if (result) {
       return `$${result[1]}`;
@@ -24,15 +24,11 @@ export default class Params<T extends IParameters> {
     }
   }
 
-  params() {
+  ids() {
     return this.args.map(p => `$${p[1]}`).join(", ");
   }
 
   values() {
     return this.args.reduce((acc, x) => acc.concat([x[2]]), [] as any[]);
-  }
-
-  toString() {
-    return this.params();
   }
 }

@@ -28,18 +28,13 @@ describe("pg-params", async () => {
 
   it("returns numbered params", () => {
     const params = new PGParams(objParams);
-    params.param("name").should.equal("$3");
+    params.id("name").should.equal("$3");
   });
 
   it("returns a list of parameter names", () => {
     const params = new PGParams(objParams);
-    params.params().should.equal("$1, $2, $3, $4");
-  });
-
-  it("returns a list of parameter names with toString()", () => {
-    const params = new PGParams(objParams);
-    (params + "").should.equal("$1, $2, $3, $4");
-  });
+    params.ids().should.equal("$1, $2, $3, $4");
+  }); 
 
   it("returns an array of values", () => {
     const params = new PGParams(objParams);
