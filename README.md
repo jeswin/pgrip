@@ -25,9 +25,9 @@ const params = Params({
 
 const queryText = `
   SELECT * FROM user WHERE 
-  name=${params.key("name")} AND 
-  country=${params.key("country")}`;
+  name=${dbParams.params("name")} AND 
+  country=${dbParams.params("country")}`;
 
-client.query(queryText, params.values());
+client.query(queryText, dbParams.values());
 ```
 

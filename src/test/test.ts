@@ -13,7 +13,7 @@ describe("pg-params", async () => {
   it("creates params", () => {
     const params = new PGParams(objParams);
 
-    params.params.should.deepEqual([
+    params.args.should.deepEqual([
       ["id", 1, 100],
       ["location", 2, "bangalore"],
       ["name", 3, "jeswin"],
@@ -28,12 +28,17 @@ describe("pg-params", async () => {
 
   it("returns numbered params", () => {
     const params = new PGParams(objParams);
-    params.key("name").should.equal("$3");
+    params.param("name").should.equal("$3");
   });
 
-  it("returns a list of keys", () => {
+  it("returns a list of parameter names", () => {
     const params = new PGParams(objParams);
-    params.keys().should.equal("$1, $2, $3, $4");
+    params.params().should.equal("$1, $2, $3, $4");
+  });
+
+  it("returns a list of parameter names with toString()", () => {
+    const params = new PGParams(objParams);
+    (params + "").should.equal("$1, $2, $3, $4");
   });
 
   it("returns an array of values", () => {
