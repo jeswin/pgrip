@@ -1,11 +1,10 @@
 {
   "name": "pg-params",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "author": "Jeswin Kumar<jeswinpk@agilehead.com>",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "./build.sh",
     "test": "./build.sh && mocha dist/test/test.js"
   },
   "license": "MIT",
