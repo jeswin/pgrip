@@ -28,6 +28,10 @@ export default class Params<T extends IParameters> {
     return this.args.map(p => `$${p[1]}`).join(", ");
   }
 
+  pair(col: string) {
+    return `"${col}"=${this.id(col)}`;
+  }
+
   pairs(cols: string[]) {
     return cols.map(c => `"${c}"=${this.id(c)}`).join(", ");
   }

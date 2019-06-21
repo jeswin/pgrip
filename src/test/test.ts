@@ -26,6 +26,11 @@ describe("pg-params", async () => {
     params.columns().should.equal(`"id", "location", "name", "timezone"`);
   });
 
+  it("returns a column-arg pair", () => {
+    const params = new PGParams(objParams);
+    params.pair("timezone").should.equal(`"timezone"=$4`);
+  });
+
   it("returns column-arg pairs", () => {
     const params = new PGParams(objParams);
     params
