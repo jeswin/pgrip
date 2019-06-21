@@ -12,7 +12,7 @@ export default class Params<T extends IParameters> {
   }
 
   columns() {
-    return this.args.map(p => p[0]).join(", ");
+    return this.args.map(p => `"${p[0]}"`).join(", ");
   }
 
   id(name: keyof T) {
@@ -26,6 +26,10 @@ export default class Params<T extends IParameters> {
 
   ids() {
     return this.args.map(p => `$${p[1]}`).join(", ");
+  }
+
+  pairs(cols: string[]) {
+    return cols.map(c => `"${c}"=${this.id(c)}`).join(", ");
   }
 
   values() {

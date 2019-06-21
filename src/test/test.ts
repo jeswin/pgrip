@@ -23,7 +23,14 @@ describe("pg-params", async () => {
 
   it("returns a list of columns", () => {
     const params = new PGParams(objParams);
-    params.columns().should.equal("id, location, name, timezone");
+    params.columns().should.equal(`"id", "location", "name", "timezone"`);
+  });
+
+  it("returns column-arg pairs", () => {
+    const params = new PGParams(objParams);
+    params
+      .pairs(["location", "timezone"])
+      .should.equal(`"location"=$2, "timezone"=$4`);
   });
 
   it("returns numbered params", () => {
@@ -34,7 +41,7 @@ describe("pg-params", async () => {
   it("returns a list of parameter names", () => {
     const params = new PGParams(objParams);
     params.ids().should.equal("$1, $2, $3, $4");
-  }); 
+  });
 
   it("returns an array of values", () => {
     const params = new PGParams(objParams);
