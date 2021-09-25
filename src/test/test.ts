@@ -1,12 +1,12 @@
 import "mocha";
 import "should";
-import PGParams from "../";
+import PGParams from "../index.js";
 
 const objParams = {
   id: 100,
   location: "bangalore",
   name: "jeswin",
-  timezone: "GMT+530"
+  timezone: "GMT+530",
 };
 
 describe("pg-params", async () => {
@@ -17,7 +17,7 @@ describe("pg-params", async () => {
       ["id", 1, 100],
       ["location", 2, "bangalore"],
       ["name", 3, "jeswin"],
-      ["timezone", 4, "GMT+530"]
+      ["timezone", 4, "GMT+530"],
     ]);
   });
 
